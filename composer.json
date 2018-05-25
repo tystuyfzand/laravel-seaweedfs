@@ -1,0 +1,36 @@
+{
+    "name": "tystuyfzand/laravel-seaweedfs",
+    "description": "A SeaweedFS implementation for Laravel (supporting Filesystems)",
+    "type": "library",
+    "license": "ISC",
+    "authors": [
+        {
+            "name": "Tyler Stuyfzand",
+            "email": "tyler@tystuyfzand.com"
+        }
+    ],
+    "require": {
+        "illuminate/filesystem": "^5.5|^5.6",
+        "illuminate/database": "^5.5|^5.6",
+        "illuminate/support": "^5.5|^5.6",
+        "illuminate/cache": "^5.5|^5.6",
+        "graham-campbell/manager": "^4.0",
+        "tystuyfzand/seaweedfs-client": "^1.0",
+        "tystuyfzand/flysystem-seaweedfs": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SeaweedFS\\Laravel\\": "src/"
+        }
+    },
+  "extra": {
+      "laravel": {
+          "providers": [
+            "SeaweedFS\\Laravel\\SeaweedFSProvider"
+          ],
+          "aliases": {
+              "SeaweedFS": "SeaweedFS\\Laravel\\Facades\\SeaweedFS"
+          }
+      }
+  }
+}
