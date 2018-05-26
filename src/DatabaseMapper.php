@@ -39,7 +39,7 @@ class DatabaseMapper implements Mapper {
     public function get($path) {
         $result = DB::table('seaweedfs_mappings')->select('fid', 'mimeType', 'size')->where('path', $path)->first();
 
-        return $result ? $result->toArray() : null;
+        return $result ? get_object_vars($result) : null;
     }
 
     /**
