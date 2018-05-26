@@ -3,6 +3,7 @@
 namespace SeaweedFS\Laravel;
 
 use DB;
+use SeaweedFS\Filesystem\Mapping\Mapper;
 
 /**
  * A SewaeedFS Mapper using Laravel's Database class
