@@ -3,6 +3,7 @@
 namespace SeaweedFS\Laravel;
 
 use GrahamCampbell\Manager\AbstractManager;
+use Illuminate\Support\Arr;
 use SeaweedFS\Cache\FileCache;
 use SeaweedFS\SeaweedFS;
 
@@ -23,17 +24,17 @@ class SeaweedFSManager extends AbstractManager {
     protected function createConnection(array $config) {
         $cache = null;
 
-        switch (array_get($config, 'cache', 'laravel')) {
+        switch (Arr::get($config, 'cache', 'laravel')) {
             case 'file':
-                $cache = new FileCache(array_get($config, 'root', storage_path('seaweedfs')));
+                $cache = new FileCache(Arr::get($config, 'root', storage_path('seaweedfs')));
                 break;
             case 'default':
             case 'laravel':
-                $cache = new LaravelCache(app('cache')->store(array_get($config, 'cache_store')));
+                $cache = new LaravelCache(app('cache')->store(Arr::get($config, 'cache_store')));
                 break;
         }
 
-        return new SeaweedFS($config['master'], array_get($config, 'scheme', 'http'), $cache);
+        return new SeaweedFS($config['master'], Arr::get($config, 'scheme', 'http'), $cache);
     }
 
     /**

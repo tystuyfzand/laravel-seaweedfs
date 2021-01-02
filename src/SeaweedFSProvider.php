@@ -2,6 +2,7 @@
 
 namespace SeaweedFS\Laravel;
 
+use Illuminate\Support\Arr;
 use League\Flysystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
@@ -32,11 +33,11 @@ class SeaweedFSProvider extends ServiceProvider {
         $this->mergeConfigFrom($configPath, 'seaweedfs');
 
         Storage::extend('seaweedfs', function ($app, $config) {
-            $client = $app['seaweedfs']->connection(array_get($config, 'connection'));
+            $client = $app['seaweedfs']->connection(Arr::get($config, 'connection'));
 
             $mapper = null;
 
-            switch (array_get($config, 'mapper', 'database')) {
+            switch (Arr::get($config, 'mapper', 'database')) {
                 case 'cache':
                     $mapper = new CacheMapper(new LaravelCache($app['cache']));
                     break;
